@@ -1,0 +1,5 @@
+﻿title,URL handle,Description,Vendor,Type,Tags,Status,SKU,Option1 name,Option1 value,Price,Compare-at price,Inventory tracker,Inventory quantity,Continue selling when out of stock,Image alt text,Product image URL
+Aurora Hoodie,aurora-hoodie,Cozy fleece hoodie,Northwind,Apparel,"new,fleece",active,HOODIE-AUR-S,Size,S,4800,3900,shopify,40,DENY,,https://cdn.example.com/aurora-s.jpg
+,,,,,,active,HOODIE-AUR-M,Size,M,4800,,shopify,35,DENY,,
+Aurora Hoodie,aurora-hoodie,Duplicate body row by mistake,Northwind,Apparel,"new,fleece",active,HOODIE-AUR-L,Size,L,4800,,shopify,20,deny,,https://cdn.example.com/aurora-l.jpg
+Pebble Mug,pebble-mug,Stoneware mug,Northwind,Drinkware,sample,active,MUG-PBL-01,Default Title,Default Title,-1800,1500,shopify,,maybe,Front of mug,

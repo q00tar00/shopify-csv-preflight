@@ -1,0 +1,33 @@
+Shopify Product CSV Preflight Validator — Source-Available License
+Copyright (c) 2026 q00tar00
+
+This software is source-available, not open source. The source code is published
+so that you can read it, audit it, and evaluate the tool. It is NOT placed in the
+public domain and no broad license is granted beyond the terms below.
+
+1. Permitted use (no charge)
+   You may download, build, run, and evaluate this software for your own personal
+   or internal business use — for example, to validate your own Shopify product CSV
+   files. You may modify your own copy for that purpose.
+
+2. Reservation of rights
+   All rights not expressly granted above are reserved by the copyright holder.
+
+3. Restrictions (require prior written permission)
+   Without the copyright holder's prior written permission you may NOT:
+   (a) redistribute, resell, sublicense, or publish this software or a derivative
+       of it, in source or binary form, whether or not for a fee;
+   (b) offer this software (or a derivative) as a hosted or managed service; or
+   (c) remove or alter this license or the copyright notice in redistributed copies.
+
+4. No warranty
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+   FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. A clean report does NOT guarantee
+   a successful Shopify import; the tool reads a file and cannot verify live-store
+   behavior. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+   CLAIM, DAMAGES, OR OTHER LIABILITY ARISING FROM, OUT OF, OR IN CONNECTION WITH
+   THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+For permissions beyond this license, contact the copyright holder via the project's
+GitHub repository: https://github.com/q00tar00/shopify

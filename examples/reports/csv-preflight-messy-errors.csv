@@ -1,0 +1,15 @@
+row,product_group_id,row_kind,handle,sku,severity,rule_id,field,message,suggested_fix,fix_class,auto_fixed
+,,,,,critical,F01a,,UTF-8 BOM detected at file start.,BOM removed automatically.,proven,True
+,,,,,critical,F03a,title,Header 'title' differs only by case from a known column.,Header case normalized automatically.,proven,True
+2,g1,variant,,HOODIE-AUR-M,critical,R02,URL handle,Variant/image row is missing the parent URL handle.,Repeat the parent product's URL handle on every variant/image row.,none,False
+1,g1,product,aurora-hoodie,HOODIE-AUR-S,critical,R03,URL handle,"2 product-start rows share handle 'aurora-hoodie' (rows 1, 3).",Keep one product-start row per handle; merge or rename duplicates.,none,False
+3,g2,product,aurora-hoodie,HOODIE-AUR-L,critical,R03,URL handle,"2 product-start rows share handle 'aurora-hoodie' (rows 1, 3).",Keep one product-start row per handle; merge or rename duplicates.,none,False
+4,g3,product,pebble-mug,MUG-PBL-01,warning,R07,Continue selling when out of stock,inventory_policy 'maybe' is not a documented value (deny/continue).,Verify against current Shopify CSV docs; not auto-normalized (SoT unsettled).,suggested,False
+4,g3,product,pebble-mug,MUG-PBL-01,warning,R08,Inventory quantity,Inventory tracker 'shopify' set but inventory quantity is empty/non-numeric.,Set a numeric inventory quantity when a tracker is active.,none,False
+1,g1,product,aurora-hoodie,HOODIE-AUR-S,warning,R09,Fulfillment service,Fulfillment service is empty (defaults to manual).,Set explicitly if a non-manual fulfillment service is required.,none,False
+2,g1,variant,,HOODIE-AUR-M,warning,R09,Fulfillment service,Fulfillment service is empty (defaults to manual).,Set explicitly if a non-manual fulfillment service is required.,none,False
+3,g2,product,aurora-hoodie,HOODIE-AUR-L,warning,R09,Fulfillment service,Fulfillment service is empty (defaults to manual).,Set explicitly if a non-manual fulfillment service is required.,none,False
+4,g3,product,pebble-mug,MUG-PBL-01,warning,R09,Fulfillment service,Fulfillment service is empty (defaults to manual).,Set explicitly if a non-manual fulfillment service is required.,none,False
+1,g1,product,aurora-hoodie,HOODIE-AUR-S,warning,R10,Compare-at price,Compare-at price 3900.0 <= price 4800.0.,Compare-at price should exceed price to show a discount.,none,False
+4,g3,product,pebble-mug,MUG-PBL-01,warning,R10,Price,Price '-1800' is negative.,Use a non-negative price.,none,False
+4,g3,product,pebble-mug,MUG-PBL-01,critical,R11,Image alt text,Image alt text present but image URL is empty.,Add the image URL or remove the alt text.,none,False
