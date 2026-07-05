@@ -1,0 +1,45 @@
+name: Bug report
+description: Something in csv-preflight behaved incorrectly (wrong finding, crash, bad auto-fix).
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting. Please do **not** attach a real store export that
+        contains customer or order data — this tool refuses those files by design,
+        and we don't want that data in a public issue either. A small, redacted
+        sample that reproduces the problem is ideal.
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: Output of `csv-preflight --version` (or the commit you ran from).
+      placeholder: "0.1.0"
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What did the tool do, and what did you expect instead?
+      placeholder: |
+        I ran `csv-preflight check products.csv` and it reported a duplicate handle,
+        but the handles are actually different (they differ only in case).
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Minimal reproduction
+      description: The smallest CSV snippet (a few rows) and the exact command that reproduces it.
+      render: text
+    validations:
+      required: true
+  - type: input
+    id: env
+    attributes:
+      label: Environment
+      description: OS and Python version (`python --version`).
+      placeholder: "macOS 14 / Python 3.12"
+    validations:
+      required: false

@@ -1,0 +1,42 @@
+name: A CSV import that went wrong
+description: Share a Shopify product-CSV import that broke, so a future check can catch it.
+labels: [import-story]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This tool exists because Shopify product-CSV imports fail in quiet, specific
+        ways. If one of those bit you, describe it here — it helps decide which check
+        to build next. **Redact anything private**: no customer or order data, no
+        access tokens. A description of *what broke* is enough; you don't have to
+        attach the file.
+
+        You can also check a CSV yourself in the browser first (no upload, no login):
+        https://shopify-7mc.pages.dev/
+  - type: textarea
+    id: what-broke
+    attributes:
+      label: What went wrong with the import
+      description: What did you upload, and how did Shopify (or your store) misbehave afterward?
+      placeholder: |
+        I edited product prices in Excel, re-uploaded, and half my products lost
+        their images. The import dialog said it succeeded.
+    validations:
+      required: true
+  - type: textarea
+    id: how-found
+    attributes:
+      label: How did you find out
+      description: Did a customer report it? A spot check? How long after the upload?
+    validations:
+      required: false
+  - type: dropdown
+    id: would-check-help
+    attributes:
+      label: Would a pre-upload check have saved you?
+      options:
+        - "Yes — I'd have caught it before uploading"
+        - "Maybe — depends how it's flagged"
+        - "No — the problem was live-store behavior a file check can't see"
+    validations:
+      required: false

@@ -3,7 +3,11 @@
 Check your Shopify **product** CSV *before* you upload it. Runs locally on your machine,
 never touches your store, needs no API key. A file goes in; a verdict comes out.
 
-GitHub repo: https://github.com/q00tar00/shopify
+GitHub repo: https://github.com/q00tar00/shopify-csv-preflight
+
+**Try it in your browser:** https://shopify-7mc.pages.dev/ — no upload, no login, your CSV never leaves the page.
+
+See a real run: [example report](examples/reports/csv-preflight-messy-report.md) from a deliberately messy sample CSV.
 
 > **Status:** CLI MVP. Self-serve, local-only, file-processing tool. No Admin API, no store
 > writes, no account. Product CSV only — it refuses files that look like order/customer exports.
