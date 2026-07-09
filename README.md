@@ -35,16 +35,15 @@ verify live-store behavior and won't pretend otherwise.
 Requires Python 3.11+. Using [uv](https://docs.astral.sh/uv/):
 
 ```bash
-# from a checkout of this repo:
-git clone https://github.com/q00tar00/shopify-csv-preflight
-cd shopify-csv-preflight
-uv run csv-preflight check your-products.csv --out-dir ./out
-
-# or install straight from GitHub:
-uv tool install "csv-preflight @ git+https://github.com/q00tar00/shopify-csv-preflight"
+uv tool install csv-preflight
+csv-preflight check your-products.csv --out-dir ./out
 ```
 
-> The package is not on PyPI yet — `uv tool install csv-preflight` alone will not find it.
+Or run it without installing:
+
+```bash
+uvx csv-preflight check your-products.csv --out-dir ./out
+```
 
 ## Usage
 
