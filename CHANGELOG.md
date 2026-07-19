@@ -4,6 +4,17 @@ All notable user-facing changes to this project are recorded here.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versions correspond to repository tags and PyPI releases where available.
 
+## [0.2.0] - 2026-07-19
+
+Package and brand rename. No functional rule changes.
+
+### Changed
+
+- Package name: `csv-preflight` → `preflight-kit`; import package: `csv_preflight` → `preflight_kit`.
+- CLI command: `csv-preflight` → `preflight`.
+- Repository moved to `q00tar00/preflight-kit`; web checker moved to `preflight-kit.pages.dev`.
+- The old PyPI name `csv-preflight` stays published but will not receive new releases.
+
 ## [0.1.0] - 2026-06-23
 
 Initial public release of the Shopify product-CSV preflight CLI.
@@ -15,4 +26,5 @@ Initial public release of the Shopify product-CSV preflight CLI.
 - English and Japanese report output.
 - Product-CSV privacy guard that refuses apparent order or customer exports.
 
-[0.1.0]: https://github.com/q00tar00/shopify-csv-preflight/releases/tag/v0.1.0
+[0.2.0]: https://github.com/q00tar00/preflight-kit/releases/tag/v0.2.0
+[0.1.0]: https://github.com/q00tar00/preflight-kit/releases/tag/v0.1.0

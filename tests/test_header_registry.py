@@ -1,4 +1,4 @@
-from csv_preflight.header_registry import (
+from preflight_kit.header_registry import (
     to_canonical,
     match_kind,
     is_dynamic,

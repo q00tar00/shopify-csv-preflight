@@ -1,10 +1,10 @@
 import csv
 from pathlib import Path
 import pytest
-from csv_preflight.loader import load_csv
-from csv_preflight.engine import run_engine
-from csv_preflight.fixer import apply_fixes
-from csv_preflight.models import ImportIntent, Severity
+from preflight_kit.loader import load_csv
+from preflight_kit.engine import run_engine
+from preflight_kit.fixer import apply_fixes
+from preflight_kit.models import ImportIntent, Severity
 
 FIX = Path(__file__).parent / "fixtures"
 

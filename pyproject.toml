@@ -1,7 +1,7 @@
 [project]
-name = "csv-preflight"
-version = "0.1.0"
-description = "Preflight validator for Shopify product CSV — catches import-breaking mistakes before you upload"
+name = "preflight-kit"
+version = "0.2.0"
+description = "Preflight Kit — preflight validator for Shopify product CSV, catches import-breaking mistakes before you upload (formerly csv-preflight)"
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "LicenseRef-Source-Available" }
@@ -21,23 +21,23 @@ classifiers = [
 dependencies = []
 
 [project.urls]
-Homepage = "https://shopify-7mc.pages.dev/"
-Repository = "https://github.com/q00tar00/shopify-csv-preflight"
-Issues = "https://github.com/q00tar00/shopify-csv-preflight/issues"
-Changelog = "https://github.com/q00tar00/shopify-csv-preflight/blob/main/CHANGELOG.md"
+Homepage = "https://preflight-kit.pages.dev/"
+Repository = "https://github.com/q00tar00/preflight-kit"
+Issues = "https://github.com/q00tar00/preflight-kit/issues"
+Changelog = "https://github.com/q00tar00/preflight-kit/blob/main/CHANGELOG.md"
 
 [project.optional-dependencies]
 dev = ["pytest>=8"]
 
 [project.scripts]
-csv-preflight = "csv_preflight.cli:main"
+preflight = "preflight_kit.cli:main"
 
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/csv_preflight"]
+packages = ["src/preflight_kit"]
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]

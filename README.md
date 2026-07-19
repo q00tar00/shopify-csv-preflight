@@ -1,18 +1,18 @@
-# Shopify Product CSV Preflight Validator
+# Preflight Kit — product CSV preflight validator for Shopify
 
-[![PyPI version](https://img.shields.io/pypi/v/csv-preflight.svg)](https://pypi.org/project/csv-preflight/)
+[![PyPI version](https://img.shields.io/pypi/v/preflight-kit.svg)](https://pypi.org/project/preflight-kit/)
 [![Source-available license](https://img.shields.io/badge/license-source--available-blue.svg)](LICENSE)
-[![CI](https://github.com/q00tar00/shopify-csv-preflight/actions/workflows/ci.yml/badge.svg)](https://github.com/q00tar00/shopify-csv-preflight/actions/workflows/ci.yml)
+[![CI](https://github.com/q00tar00/preflight-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/q00tar00/preflight-kit/actions/workflows/ci.yml)
 
-Validate a Shopify **product** CSV before uploading it. `csv-preflight` runs locally, never connects to a Shopify store, and needs no API key. It reports import-risk findings and produces reviewable output files without changing the input CSV.
+Validate a Shopify **product** CSV before uploading it. `preflight-kit` runs locally, never connects to a Shopify store, and needs no API key. It reports import-risk findings and produces reviewable output files without changing the input CSV.
 
-> **Status:** Beta CLI, version 0.1.0. This is a local, file-processing tool for product CSVs only. It has no Admin API integration, store-write capability, or user account system.
+> **Status:** Beta CLI, version 0.2.0 (formerly published as `csv-preflight`). This is a local, file-processing tool for product CSVs only. It has no Admin API integration, store-write capability, or user account system.
 
 ## Project links
 
-- Web checker: [shopify-7mc.pages.dev](https://shopify-7mc.pages.dev/) (no upload or login)
-- Package: [PyPI — csv-preflight](https://pypi.org/project/csv-preflight/)
-- Source and issue tracker: [q00tar00/shopify-csv-preflight](https://github.com/q00tar00/shopify-csv-preflight)
+- Web checker: [preflight-kit.pages.dev](https://preflight-kit.pages.dev/) (no upload or login)
+- Package: [PyPI — preflight-kit](https://pypi.org/project/preflight-kit/)
+- Source and issue tracker: [q00tar00/preflight-kit](https://github.com/q00tar00/preflight-kit)
 - Change history: [CHANGELOG.md](CHANGELOG.md)
 
 ## What it checks
@@ -35,19 +35,19 @@ Requires Python 3.11 or later.
 With [uv](https://docs.astral.sh/uv/):
 
 ```bash
-uv tool install csv-preflight
+uv tool install preflight-kit
 ```
 
 With pip:
 
 ```bash
-python -m pip install csv-preflight
+python -m pip install preflight-kit
 ```
 
 ## Usage
 
 ```bash
-csv-preflight check products.csv --out-dir ./out --lang en --intent new
+preflight check products.csv --out-dir ./out --lang en --intent new
 ```
 
 Each run writes the following to `--out-dir`:
@@ -65,7 +65,7 @@ Useful options:
 
 The command exits with status `1` when it finds a critical issue; otherwise it exits with `0`. A zero exit status means no critical finding was detected within the implemented checks, not that Shopify will necessarily accept or apply the import as intended.
 
-For a reproducible example, see the [deliberately messy sample report](examples/reports/csv-preflight-messy-report.md) and its [input CSV](examples/inputs/messy-product-import-sample.csv).
+For a reproducible example, see the [deliberately messy sample report](examples/reports/preflight-kit-messy-report.md) and its [input CSV](examples/inputs/messy-product-import-sample.csv).
 
 ## Boundaries and privacy
 
@@ -84,7 +84,7 @@ Auto-fixes are deliberately limited to proven, unambiguous transformations. Find
 
 This project is maintained by the GitHub user [q00tar00](https://github.com/q00tar00). The public GitHub repository and its issue tracker are the project’s canonical communication channels.
 
-For questions, bug reports, feature requests, or examples of a product-CSV import that went wrong, use [GitHub Issues](https://github.com/q00tar00/shopify-csv-preflight/issues). Please use a small redacted reproduction and never post customer, order, access-token, or other sensitive data. Support is provided on a best-effort basis; no response-time commitment is made.
+For questions, bug reports, feature requests, or examples of a product-CSV import that went wrong, use [GitHub Issues](https://github.com/q00tar00/preflight-kit/issues). Please use a small redacted reproduction and never post customer, order, access-token, or other sensitive data. Support is provided on a best-effort basis; no response-time commitment is made.
 
 ## Contributing
 

@@ -23,7 +23,7 @@ body:
       label: What happened
       description: What did the tool do, and what did you expect instead?
       placeholder: |
-        I ran `csv-preflight check products.csv` and it reported a duplicate handle,
+        I ran `preflight check products.csv` and it reported a duplicate handle,
         but the handles are actually different (they differ only in case).
     validations:
       required: true

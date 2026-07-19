@@ -1,6 +1,6 @@
-from csv_preflight.loader import LoadResult
-from csv_preflight.models import Row, RowKind, Severity, FixClass, Finding, ImportIntent
-from csv_preflight.fixer import apply_fixes, FixResult
+from preflight_kit.loader import LoadResult
+from preflight_kit.models import Row, RowKind, Severity, FixClass, Finding, ImportIntent
+from preflight_kit.fixer import apply_fixes, FixResult
 
 
 def _f03a(col):

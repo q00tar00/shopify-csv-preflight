@@ -18,7 +18,7 @@ def _write_fixed_csv(header, rows, path):
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(prog="csv-preflight")
+    parser = argparse.ArgumentParser(prog="preflight")
     sub = parser.add_subparsers(dest="command", required=True)
     check = sub.add_parser("check", help="Validate a Shopify product CSV")
     check.add_argument("input")

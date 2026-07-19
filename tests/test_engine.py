@@ -1,6 +1,6 @@
-from csv_preflight.loader import LoadResult
-from csv_preflight.models import Row, RowKind, Severity, FixClass, Finding, ImportIntent
-from csv_preflight.engine import run_engine
+from preflight_kit.loader import LoadResult
+from preflight_kit.models import Row, RowKind, Severity, FixClass, Finding, ImportIntent
+from preflight_kit.engine import run_engine
 
 
 def _load(header, rows, file_findings=None, blocked=False):

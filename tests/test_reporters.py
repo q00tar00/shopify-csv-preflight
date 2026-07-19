@@ -1,7 +1,7 @@
 import csv
 from pathlib import Path
-from csv_preflight.models import Finding, Severity, FixClass, RowKind
-from csv_preflight.reporters import write_errors_csv, render_report_md
+from preflight_kit.models import Finding, Severity, FixClass, RowKind
+from preflight_kit.reporters import write_errors_csv, render_report_md
 
 
 def _f(rule_id, severity, fix_class=FixClass.NONE):

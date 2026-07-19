@@ -10,7 +10,7 @@ Sample Shopify **product** CSV files for trying the validator. No buyer/customer
 Run the validator against either one:
 
 ```bash
-csv-preflight check messy-product-import-sample.csv --out-dir ./out --lang en
+preflight check messy-product-import-sample.csv --out-dir ./out --lang en
 ```
 
 The generated `report.md` / `errors.csv` for the messy file are committed under

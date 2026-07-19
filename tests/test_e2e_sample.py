@@ -1,5 +1,5 @@
 from pathlib import Path
-from csv_preflight.cli import main
+from preflight_kit.cli import main
 
 SAMPLE = (
     Path(__file__).parents[1]

@@ -12,7 +12,7 @@ body:
         attach the file.
 
         You can also check a CSV yourself in the browser first (no upload, no login):
-        https://shopify-7mc.pages.dev/
+        https://preflight-kit.pages.dev/
   - type: textarea
     id: what-broke
     attributes:

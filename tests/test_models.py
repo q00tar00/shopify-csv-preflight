@@ -1,4 +1,4 @@
-from csv_preflight.models import (
+from preflight_kit.models import (
     Severity,
     FixClass,
     RowKind,

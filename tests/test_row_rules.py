@@ -1,6 +1,6 @@
-from csv_preflight.loader import LoadResult
-from csv_preflight.models import Row, RowKind, Severity, FixClass, ImportIntent
-from csv_preflight.rules.row_rules import (
+from preflight_kit.loader import LoadResult
+from preflight_kit.models import Row, RowKind, Severity, FixClass, ImportIntent
+from preflight_kit.rules.row_rules import (
     rule_r01,
     rule_r02,
     rule_r03,

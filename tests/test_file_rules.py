@@ -1,6 +1,6 @@
-from csv_preflight.loader import LoadResult
-from csv_preflight.models import Row, Severity, FixClass, ImportIntent
-from csv_preflight.rules.file_rules import (
+from preflight_kit.loader import LoadResult
+from preflight_kit.models import Row, Severity, FixClass, ImportIntent
+from preflight_kit.rules.file_rules import (
     rule_f03a,
     rule_f03b,
     rule_f03c,
@@ -83,7 +83,7 @@ def test_f04a_over_15mb_is_critical():
 
 
 def _row(line, cells):
-    from csv_preflight.models import RowKind
+    from preflight_kit.models import RowKind
 
     return Row(
         line_no=line,
@@ -96,7 +96,7 @@ def _row(line, cells):
 
 
 def test_f01c_control_char_warning():
-    from csv_preflight.rules.file_rules import rule_f01c
+    from preflight_kit.rules.file_rules import rule_f01c
 
     load = _load(["Title"], rows=[_row(1, {"Title": "Te\x07e"})])
     findings = rule_f01c(load, ImportIntent.MIXED)
@@ -104,7 +104,7 @@ def test_f01c_control_char_warning():
 
 
 def test_f02_smart_quotes_suggested():
-    from csv_preflight.rules.file_rules import rule_f02
+    from preflight_kit.rules.file_rules import rule_f02
 
     load = _load(["Title"], rows=[_row(1, {"Title": "“curly”"})])
     findings = rule_f02(load, ImportIntent.MIXED)
@@ -114,7 +114,7 @@ def test_f02_smart_quotes_suggested():
 
 
 def test_f04b_many_rows_warning():
-    from csv_preflight.rules.file_rules import rule_f04b
+    from preflight_kit.rules.file_rules import rule_f04b
 
     rows = [_row(i, {"Title": "x"}) for i in range(5001)]
     load = _load(["Title"], rows=rows)

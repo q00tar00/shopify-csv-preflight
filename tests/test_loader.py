@@ -1,6 +1,6 @@
 from pathlib import Path
-from csv_preflight.loader import load_csv, LoadResult
-from csv_preflight.models import RowKind
+from preflight_kit.loader import load_csv, LoadResult
+from preflight_kit.models import RowKind
 
 
 def _write(tmp_path: Path, name: str, content: bytes) -> str:
@@ -155,8 +155,8 @@ def test_oversized_file_with_pii_still_blocks_and_reports_f04a(tmp_path):
     # round-3 blocking(spec-conformance) 回帰: blocked=True でも F04a(15MB hard limit)
     # は raw_byte_size だけで決まる critical なので engine 後に必ず出る（F04a の
     # false negative を防ぐ）。
-    from csv_preflight.engine import run_engine
-    from csv_preflight.models import ImportIntent
+    from preflight_kit.engine import run_engine
+    from preflight_kit.models import ImportIntent
 
     header = b"Handle,Title,Customer Email,Phone\n"
     big_cell = b"x" * (16 * 1024 * 1024)
@@ -174,8 +174,8 @@ def test_oversized_file_with_pii_still_blocks_and_reports_f04a(tmp_path):
 def test_oversized_file_does_not_false_fire_f03c(tmp_path):
     # round-2 spec-conformance 回帰: handle/title を持つ巨大 product CSV で
     # F04a のみが出て、F03c（handle/title 欠落）が混入しないこと。
-    from csv_preflight.engine import run_engine
-    from csv_preflight.models import ImportIntent
+    from preflight_kit.engine import run_engine
+    from preflight_kit.models import ImportIntent
 
     header = b"Handle,Title,Variant SKU\n"
     big_cell = b"x" * (16 * 1024 * 1024)
@@ -192,8 +192,8 @@ def test_oversized_header_read_failure_skips_f03c(tmp_path):
     # 含み csv.Error で読めない場合、header=[] になる。列構造が不明なので F03c は
     # 判定不能としてスキップし、F04a critical に委ねる（header=[] 起点の handle/title
     # 欠落を誤発火させない）。
-    from csv_preflight.engine import run_engine
-    from csv_preflight.models import ImportIntent
+    from preflight_kit.engine import run_engine
+    from preflight_kit.models import ImportIntent
 
     giant = b"x" * (65 * 1024 * 1024)  # 64MB field_size_limit 超
     csv = giant + b",Title\n" + b"a,b\n"

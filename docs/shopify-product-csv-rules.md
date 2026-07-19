@@ -1,6 +1,6 @@
 # Shopify Product CSV 検査ルール v1 仕様
 
-> 本書は CSV Preflight Validator の検査ルールの SoT。実装（`src/csv_preflight/`）とテスト期待値の根拠になる。
+> 本書は CSV Preflight Validator の検査ルールの SoT。実装（`src/preflight_kit/`）とテスト期待値の根拠になる。
 > 設計の SoT は `docs/superpowers/specs/2026-06-22-csv-preflight-validator-design.md`。
 > 出典: Shopify 公式「Using CSV files to import and export products」
 > https://help.shopify.com/en/manual/products/import-export/using-csv
@@ -18,7 +18,7 @@
 
 Shopify の product CSV は時期により **新形式ヘッダー**（例 `URL handle`）と **旧形式 alias**（例 `Handle`）が
 混在する。検査では両方を canonical key に正規化して解釈する。`CANONICAL_TO_HEADERS`
-（`src/csv_preflight/header_registry.py`）の SoT は本表。各行の先頭ヘッダーが「現行公式の正式名（primary）」で、
+（`src/preflight_kit/header_registry.py`）の SoT は本表。各行の先頭ヘッダーが「現行公式の正式名（primary）」で、
 case-only 修正（F03a・proven）の正規化先になる。2つ目以降は旧形式 alias（F03b・suggested）。
 
 | canonical key | 新形式ヘッダー（primary） | 旧形式 alias |
