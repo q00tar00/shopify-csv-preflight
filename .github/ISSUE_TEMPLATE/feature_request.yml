@@ -1,0 +1,30 @@
+name: Feature request
+description: Suggest a focused improvement to Shopify product-CSV preflight validation.
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for suggesting an improvement. Please do not include customer or
+        order data, credentials, access tokens, or an unredacted store export.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem to solve
+      description: What import risk or pre-upload workflow problem is not covered today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+      description: Describe the expected finding or safe behavior. Include a small redacted CSV example if useful.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: What current workflow or workaround have you tried?
+    validations:
+      required: false

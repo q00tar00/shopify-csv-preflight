@@ -1,93 +1,99 @@
 # Shopify Product CSV Preflight Validator
 
-Check your Shopify **product** CSV *before* you upload it. Runs locally on your machine,
-never touches your store, needs no API key. A file goes in; a verdict comes out.
+[![PyPI version](https://img.shields.io/pypi/v/csv-preflight.svg)](https://pypi.org/project/csv-preflight/)
+[![Source-available license](https://img.shields.io/badge/license-source--available-blue.svg)](LICENSE)
+[![CI](https://github.com/q00tar00/shopify-csv-preflight/actions/workflows/ci.yml/badge.svg)](https://github.com/q00tar00/shopify-csv-preflight/actions/workflows/ci.yml)
 
-GitHub repo: https://github.com/q00tar00/shopify-csv-preflight
+Validate a Shopify **product** CSV before uploading it. `csv-preflight` runs locally, never connects to a Shopify store, and needs no API key. It reports import-risk findings and produces reviewable output files without changing the input CSV.
 
-**Try it in your browser:** https://shopify-7mc.pages.dev/ — no upload, no login, your CSV never leaves the page.
+> **Status:** Beta CLI, version 0.1.0. This is a local, file-processing tool for product CSVs only. It has no Admin API integration, store-write capability, or user account system.
 
-See a real run: [example report](examples/reports/csv-preflight-messy-report.md) from a deliberately messy sample CSV.
+## Project links
 
-> **Status:** CLI MVP. Self-serve, local-only, file-processing tool. No Admin API, no store
-> writes, no account. Product CSV only — it refuses files that look like order/customer exports.
+- Web checker: [shopify-7mc.pages.dev](https://shopify-7mc.pages.dev/) (no upload or login)
+- Package: [PyPI — csv-preflight](https://pypi.org/project/csv-preflight/)
+- Source and issue tracker: [q00tar00/shopify-csv-preflight](https://github.com/q00tar00/shopify-csv-preflight)
+- Change history: [CHANGELOG.md](CHANGELOG.md)
 
-## What it does
+## What it checks
 
-You exported a product CSV, edited it in Excel or Google Sheets, and uploaded it to Shopify.
-Shopify's import is a two-stage process (validate, then apply), so a file can pass the upload
-dialog and still misbehave: a handle gets overwritten, a variant attaches to the wrong product,
-half your rows go missing — and you find out days later from a customer.
+The validator checks Shopify product-CSV structure and row-level risks, including:
 
-This tool catches the import-breaking mistakes first. For one run it produces three files:
+- UTF-8 encoding, BOMs, control characters, headers, file size, and column alignment.
+- Missing or duplicate product handles, required-column gaps, and variant parent linkage.
+- Duplicate option combinations and option dependency or position problems.
+- SKU gaps, reused SKUs, and Excel-style scientific notation.
+- Inventory, fulfillment, price, image URL, and image-alt-text consistency.
+- Product CSVs that appear to be order or customer exports: these are refused before row-level processing to avoid handling buyer PII.
 
-- `fixed_products.csv` — a safe copy with the unambiguous, mechanical mistakes already corrected.
-- `errors.csv` — a machine-readable list of every finding (row, rule, severity, suggested fix).
-- `report.md` — a human-readable report you can read in 30 seconds.
-
-It **auto-fixes only what is unambiguous** (UTF-8 BOM, header case). Every judgment call —
-missing/duplicate handles, negative prices, image/alt mismatches — is *reported, never silently
-rewritten*. Every report ends with a **Not checked** section, because a file-only tool can't
-verify live-store behavior and won't pretend otherwise.
+It supports current Shopify product-CSV headers and documented legacy aliases. The complete, versioned rule reference is [docs/shopify-product-csv-rules.md](docs/shopify-product-csv-rules.md).
 
 ## Install
 
-Requires Python 3.11+. Using [uv](https://docs.astral.sh/uv/):
+Requires Python 3.11 or later.
+
+With [uv](https://docs.astral.sh/uv/):
 
 ```bash
 uv tool install csv-preflight
-csv-preflight check your-products.csv --out-dir ./out
 ```
 
-Or run it without installing:
+With pip:
 
 ```bash
-uvx csv-preflight check your-products.csv --out-dir ./out
+python -m pip install csv-preflight
 ```
 
 ## Usage
 
 ```bash
-csv-preflight check products.csv --out-dir ./out --lang en
+csv-preflight check products.csv --out-dir ./out --lang en --intent new
 ```
 
-Options:
+Each run writes the following to `--out-dir`:
 
-- `--out-dir DIR` — where to write `fixed_products.csv` / `errors.csv` / `report.md`.
-- `--lang en|ja` — report language.
-- `--no-fix` — report only; do not write `fixed_products.csv`.
-- `--intent create|update` — context for handle-overwrite warnings.
+- `fixed_products.csv` — a copy with only unambiguous mechanical fixes applied (currently UTF-8 BOM removal and case-only header normalization).
+- `errors.csv` — machine-readable findings with row, rule, severity, and suggested-fix fields.
+- `report.md` — a human-readable summary.
 
-The exit code is non-zero when criticals are present, so you can wire it into a script and
-stop a bad upload automatically.
+Useful options:
 
-See a real run on a deliberately messy file under [`examples/`](examples/): inputs in
-[`examples/inputs/`](examples/inputs/), sample outputs in [`examples/reports/`](examples/reports/).
+- `--out-dir DIR` — output directory (default: `./out`).
+- `--lang en|ja` — report language (default: `ja`).
+- `--no-fix` — report findings without writing `fixed_products.csv`.
+- `--intent new|update|mixed` — choose the import context used for handle and title severity.
 
-## What it checks (v1)
+The command exits with status `1` when it finds a critical issue; otherwise it exits with `0`. A zero exit status means no critical finding was detected within the implemented checks, not that Shopify will necessarily accept or apply the import as intended.
 
-File-level structure (encoding, BOM, headers, size limits) plus per-row rules covering missing /
-duplicate handles, variant parent linkage, price sanity (negative, compare-at below price),
-image/alt-text consistency, and inventory fields. Full spec:
-[`docs/shopify-product-csv-rules.md`](docs/shopify-product-csv-rules.md).
+For a reproducible example, see the [deliberately messy sample report](examples/reports/csv-preflight-messy-report.md) and its [input CSV](examples/inputs/messy-product-import-sample.csv).
 
-## Privacy
+## Boundaries and privacy
 
-It reads a file. It does not touch your store. Your catalog never leaves your machine.
-The tool detects buyer-PII column names (order/customer exports) and **refuses** those files —
-your buyers' personal data never goes through it.
+The CLI reads a local file and does not upload it or access a Shopify store. It does not verify live-store behavior. In particular, it cannot check image URL reachability, conflicts with existing store handles, metafield product-reference resolution, or option-position consistency with existing products; every report identifies these limits.
 
-## Documents
+Auto-fixes are deliberately limited to proven, unambiguous transformations. Findings that require a business decision are reported but not silently rewritten.
 
-- Inspection rules v1: [`docs/shopify-product-csv-rules.md`](docs/shopify-product-csv-rules.md)
+## Documentation
 
-## Feedback
+- [Inspection rules](docs/shopify-product-csv-rules.md)
+- [Change history](CHANGELOG.md)
+- [Contributing guide](CONTRIBUTING.md)
+- [Security policy](SECURITY.md)
 
-This is an early MVP and I'm validating whether merchants find it useful. If a silent partial
-import has ever bitten you, please open an issue with what broke — that's exactly the signal I'm
-looking for.
+## Maintenance and support
+
+This project is maintained by the GitHub user [q00tar00](https://github.com/q00tar00). The public GitHub repository and its issue tracker are the project’s canonical communication channels.
+
+For questions, bug reports, feature requests, or examples of a product-CSV import that went wrong, use [GitHub Issues](https://github.com/q00tar00/shopify-csv-preflight/issues). Please use a small redacted reproduction and never post customer, order, access-token, or other sensitive data. Support is provided on a best-effort basis; no response-time commitment is made.
+
+## Contributing
+
+Contributions are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md) for the supported scope, local setup, test command, and pull-request expectations.
+
+## Security
+
+Please follow [SECURITY.md](SECURITY.md) for vulnerability reporting. Do not disclose exploitable security details or sensitive CSV data in a public issue.
 
 ## License
 
-Source-available — see [`LICENSE`](LICENSE). You may read the source and evaluate the tool for
-personal use; commercial use and redistribution require permission.
+This project is source-available, not open source. See [LICENSE](LICENSE) for permitted use and redistribution terms.
